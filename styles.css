@@ -351,24 +351,9 @@ p {
 /* Gapless grid */
 .mosaic {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(50%, 1fr));
-  grid-auto-rows: calc(50vw); /* creates 2-row tall = square on desktop */
-  gap: 0; /* remove space */
-}
-
-@media(min-width:800px) {
-  /* Desktop irregular layout – no gap */
-  .mosaic {
-    grid-template-columns: repeat(4, 1fr);
-    grid-auto-rows: 22vw;     /* tunes height */
-  }
-  .mosaic .card:nth-child(1) {
-    grid-row: span 2;
-    grid-column: span 2;
-  }
-  .mosaic .card:nth-child(3) {
-    grid-column: span 4;
-  }
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 320px);
+  gap: 0;
 }
 
 .mosaic .card {
@@ -377,34 +362,178 @@ p {
   cursor: pointer;
   border-radius: 0;
   background: var(--bg-black);
+  height: 100%;
+  min-height: 0;
+  display: flex;
+  align-items: flex-end;
 }
 
-/* Card image now covers & fits */
+/* Imagen de fondo cubre y se adapta a la altura */
 .mosaic .card::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: var(--img) center/cover;
+  background: var(--img) center/cover no-repeat;
   transition: transform .5s ease;
   transform: scale(1.05);
-  background-size: cover;
-  background-position: center;
+  z-index: 0;
 }
 
 .mosaic .card:hover::before {
-  transform: scale(1.05) translateX(-15px); /* parallax */
+  transform: scale(1.05) translateX(-15px);
 }
 
 .mosaic .label {
-  position: absolute;
-  bottom: 1rem;
-  left: 50%;
-  transform: translateX(-50%);
+  position: relative;
+  z-index: 1;
+  margin: 0 0 2rem 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  text-align: center;
   font-weight: 600;
   font-size: .9rem;
   color: #fff;
   letter-spacing: .3px;
   text-shadow: 0 0 4px #000;
+}
+
+/* Layout específico por fila y columna */
+.mosaic .card-1 { grid-row: 1; grid-column: 1 / 2; }
+.mosaic .card-2 { grid-row: 1; grid-column: 2 / 4; }
+.mosaic .card-3 { grid-row: 2; grid-column: 1 / 3; }
+.mosaic .card-4 { grid-row: 2; grid-column: 3 / 4; }
+.mosaic .card-5 { grid-row: 3; grid-column: 1 / 2; }
+.mosaic .card-6 { grid-row: 3; grid-column: 2 / 4; }
+
+/* Ajuste para la fila 2: card-3 ocupa 2/3, card-4 ocupa 1/3 */
+@media (min-width: 800px) {
+  .mosaic {
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: repeat(3, 320px);
+  }
+  .mosaic .card-1 { grid-row: 1; grid-column: 1; }
+  .mosaic .card-2 { grid-row: 1; grid-column: 2; }
+  .mosaic .card-3 { grid-row: 2; grid-column: 1 / span 2; }
+  .mosaic .card-4 { 
+    grid-row: 2; 
+    grid-column: 2; 
+    z-index: 2;
+    /* Para que card-4 esté encima de card-3 en la intersección */
+    margin-left: auto;
+    width: 100%;
+    max-width: unset;
+  }
+  .mosaic .card-5 { grid-row: 3; grid-column: 1; }
+  .mosaic .card-6 { grid-row: 3; grid-column: 2; }
+  /* Ajuste visual: card-3 ocupa 2/3, card-4 encima en el último tercio */
+  .mosaic .card-3 {
+    grid-column: 1 / 2;
+    /* Ocupa dos tercios usando grid-area y grid-template-columns override */
+  }
+  .mosaic .card-4 {
+    grid-column: 2 / 3;
+  }
+  .mosaic {
+    grid-template-columns: 2fr 1fr;
+  }
+}
+
+/* SOLO la segunda fila: cambia a 2fr 1fr */
+@media (min-width: 800px) {
+  .mosaic {
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: repeat(3, 320px);
+  }
+  /* Primera fila: 1fr 2fr */
+  .mosaic .card-1 { grid-row: 1; grid-column: 1; }
+  .mosaic .card-2 { grid-row: 1; grid-column: 2; }
+  /* Segunda fila: 2fr 1fr */
+  .mosaic .card-3 { grid-row: 2; grid-column: 1; }
+  .mosaic .card-4 { grid-row: 2; grid-column: 2; }
+  .mosaic .card-5 { grid-row: 3; grid-column: 1; }
+  .mosaic .card-6 { grid-row: 3; grid-column: 2; }
+  /* Cambia SOLO la segunda fila a 2fr 1fr */
+  .mosaic .card-3, .mosaic .card-4 {
+    grid-row: 2;
+  }
+  .mosaic .card-3 {
+    grid-column: 1 / 2;
+  }
+  .mosaic .card-4 {
+    grid-column: 2 / 3;
+  }
+  /* Hack: cambia el ancho de columnas solo en la segunda fila usando grid-template-areas */
+  .mosaic {
+    grid-template-areas:
+      "card-1 card-2"
+      "card-3 card-4"
+      "card-5 card-6";
+    grid-template-columns: 1fr 2fr;
+  }
+  .mosaic .card-1 { grid-area: card-1; }
+  .mosaic .card-2 { grid-area: card-2; }
+  .mosaic .card-3 { grid-area: card-3; }
+  .mosaic .card-4 { grid-area: card-4; }
+  .mosaic .card-5 { grid-area: card-5; }
+  .mosaic .card-6 { grid-area: card-6; }
+  /* Segunda fila: override columnas solo para esa fila */
+  .mosaic .card-3, .mosaic .card-4 {
+    grid-row: 2;
+  }
+  .mosaic .card-3 {
+    grid-column: 1 / 2;
+  }
+  .mosaic .card-4 {
+    grid-column: 2 / 3;
+  }
+  /* Cambia el grid-template-columns solo para la segunda fila */
+  .mosaic .card-3,
+  .mosaic .card-4 {
+    /* Segunda fila: primer servicio ocupa 2fr, segundo 1fr */
+    /* Usamos un contenedor interno para la segunda fila */
+  }
+  /* Usar grid-template-columns: 2fr 1fr solo en la segunda fila */
+  .mosaic .card-3 {
+    grid-column: 1 / 2;
+  }
+  .mosaic .card-4 {
+    grid-column: 2 / 3;
+  }
+  .mosaic .card-3,
+  .mosaic .card-4 {
+    /* Para la segunda fila, cambia el ancho de columnas */
+    /* No es posible cambiar grid-template-columns solo para una fila en CSS puro,
+       pero puedes simularlo invirtiendo el orden de las columnas y usando grid-area. */
+  }
+  /* Solución efectiva: cambia el orden de las columnas en la segunda fila */
+  .mosaic {
+    grid-template-areas:
+      "card-1 card-2"
+      "card-3 card-4"
+      "card-5 card-6";
+    grid-template-columns: 2fr 1fr;
+  }
+  .mosaic .card-1 { grid-area: card-1; }
+  .mosaic .card-2 { grid-area: card-2; }
+  .mosaic .card-3 { grid-area: card-3; }
+  .mosaic .card-4 { grid-area: card-4; }
+  .mosaic .card-5 { grid-area: card-5; }
+  .mosaic .card-6 { grid-area: card-6; }
+}
+
+/* Responsive: stack en una columna */
+@media (max-width: 900px) {
+  .mosaic {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(6, 220px);
+  }
+  .mosaic .card {
+    grid-column: 1 !important;
+    grid-row: auto !important;
+    height: 220px;
+  }
+  .mosaic .card-4 { display: flex; }
 }
 
 /* Lightbox dialog */

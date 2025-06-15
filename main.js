@@ -178,7 +178,9 @@ const burger = document.getElementById('burger');
 const overlay = document.getElementById('overlay');
 const topbar = document.querySelector('.topbar');
 
-// Language switcher
+/**
+ * Cambia el idioma de la página y actualiza los textos.
+ */
 function setLanguage(lang) {
   // Update document title based on language
   document.title = lang === 'es' 
@@ -217,13 +219,17 @@ function setLanguage(lang) {
   document.documentElement.lang = lang;
 }
 
-// Initialize language from localStorage or default to Spanish
+/**
+ * Inicializa el idioma al cargar la página.
+ */
 function initLanguage() {
   const savedLang = localStorage.getItem('pixanLang') || 'es';
   setLanguage(savedLang);
 }
 
-// Smooth scroll
+/**
+ * Realiza scroll suave a un elemento o abre el modal de contacto.
+ */
 function smoothScroll(target) {
   const element = document.querySelector(target);
   if (element) {
@@ -237,17 +243,24 @@ function smoothScroll(target) {
   }
 }
 
-// Modal handlers
+/**
+ * Abre un modal por id.
+ */
 function openModal(id) {
   const modal = document.getElementById(id);
   if (modal) modal.showModal();
 }
 
+/**
+ * Cierra un modal.
+ */
 function closeModal(modal) {
   modal.close();
 }
 
-// Timeline animation
+/**
+ * Inicializa la animación de la línea de tiempo (timeline).
+ */
 function initTimelineAnimation() {
   if (!timelineSteps.length) return;
   
