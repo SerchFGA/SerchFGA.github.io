@@ -339,6 +339,11 @@ function initServicesLightbox() {
     { key: 'sv6', img: 'https://images.unsplash.com/photo-1557800636-894a64c1696f?w=1200&auto=format&fit=crop' },
   ];
 
+  // Ensure no undefined images
+  svcData.forEach(o => {
+    if (!o.img) o.img = 'https://images.unsplash.com/photo-1581091012184-41031b3a6b07?w=1200&auto=format&fit=crop'; // universal default
+  });
+
   function openBox(i) {
     idx = i;
     const { key, img } = svcData[idx];
@@ -347,19 +352,28 @@ function initServicesLightbox() {
     titleBx.textContent = translate(`${key}t`);
     descBx.textContent = translate(`${key}d`);
     dialog.showModal();
+    document.body.style.overflow = 'hidden'; // Prevent background scroll
   }
 
   if (cards.length && dialog) {
     cards.forEach((c, i) => c.addEventListener('click', () => openBox(i)));
     
     const closeBtn = dialog.querySelector('.close');
-    if (closeBtn) closeBtn.onclick = () => dialog.close();
+    if (closeBtn) closeBtn.onclick = () => {
+      dialog.close();
+      document.body.style.overflow = ''; // Restore scroll
+    };
     
     const prevBtn = dialog.querySelector('.prev');
     if (prevBtn) prevBtn.onclick = () => openBox((idx + 5) % 6);
     
     const nextBtn = dialog.querySelector('.next');
     if (nextBtn) nextBtn.onclick = () => openBox((idx + 1) % 6);
+    
+    // Reset body overflow when dialog is closed
+    dialog.addEventListener('close', () => {
+      document.body.style.overflow = '';
+    });
   }
 
   /* helper uses existing i18n system */
