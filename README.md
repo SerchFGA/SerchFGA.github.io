@@ -1,3 +1,2 @@
-# [SerchFGA.github.io](https://page.pixanai.com/)
-PixanWebPage
+# [PixanAI Web-Page](https://page.pixanai.com/)
 
