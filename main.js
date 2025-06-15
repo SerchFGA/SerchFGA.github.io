@@ -17,7 +17,7 @@ const translations = {
     hw6Text: "Support, metrics & monthly optimisation.",
     servicesTitle: "Featured Services",
     sv1: "Process automation",
-    sv1Text: "End-to-end backend & RPA flows.",
+    sv1Text: "End-to-end backend & RPA flows to remove repetition.",
     sv2: "Omnichannel AI agents",
     sv2Text: "WhatsApp, web & enterprise chat.",
     sv3: "AI-powered systems",
@@ -60,7 +60,28 @@ const translations = {
     privacyTitle: "Privacy Policy",
     privacyContent: "<p>At Pixan AI, we respect your privacy and are committed to protecting your personal data. This policy explains how we collect, use, and protect your information.</p><p>For more information, please contact us directly.</p>",
     termsTitle: "Terms and Conditions",
-    termsContent: "<p>By using our services, you agree to these terms and conditions. We reserve the right to modify these terms at any time.</p><p>For more information, please contact us directly.</p>"
+    termsContent: "<p>By using our services, you agree to these terms and conditions. We reserve the right to modify these terms at any time.</p><p>For more information, please contact us directly.</p>",
+    cta: "Book call",
+    h1s1: "Automation with soul",
+    p1s1: "AI & workflows that free your time.",
+    h1s2: "Turn data into decisions",
+    p1s2: "Embedding AI in every workflow.",
+    h1s3: "Empower your team 24/7",
+    p1s3: "AI agents that serve & learn nonstop.",
+    // New services mosaic translations
+    servTitle: "Our services",
+    sv1t: "Process automation",
+    sv1d: "We orchestrate end-to-end backend & RPA flows to remove repetition.",
+    sv2t: "Smart scheduling",
+    sv2d: "Booking systems for clinics & law firms with reminders and payments.",
+    sv3t: "Omnichannel AI agents",
+    sv3d: "WhatsApp, web & enterprise chatbots trained on your data.",
+    sv4t: "AI-driven platforms",
+    sv4d: "Apps that think & decide in real time.",
+    sv5t: "AI social content",
+    sv5d: "Auto-generated, on-brand posts to grow socials effortlessly.",
+    sv6t: "AI-built websites",
+    sv6d: "Optimised landing pages in hours, not days."
   },
   es: {
     heroSub: "Creamos agentes IA y automatizaciones que liberan tiempo y multiplican el valor humano.",
@@ -122,7 +143,28 @@ const translations = {
     privacyTitle: "Política de Privacidad",
     privacyContent: "<p>En Pixan AI respetamos tu privacidad y nos comprometemos a proteger tus datos personales. Esta política explica cómo recopilamos, usamos y protegemos tu información.</p><p>Para más información, contáctanos directamente.</p>",
     termsTitle: "Términos y Condiciones",
-    termsContent: "<p>Al utilizar nuestros servicios, aceptas estos términos y condiciones. Nos reservamos el derecho de modificar estos términos en cualquier momento.</p><p>Para más información, contáctanos directamente.</p>"
+    termsContent: "<p>Al utilizar nuestros servicios, aceptas estos términos y condiciones. Nos reservamos el derecho de modificar estos términos en cualquier momento.</p><p>Para más información, contáctanos directamente.</p>",
+    cta: "Agenda llamada",
+    h1s1: "Automatiza con alma",
+    p1s1: "IA y procesos que liberan tu tiempo.",
+    h1s2: "Convierte datos en decisiones",
+    p1s2: "Integramos inteligencia artificial en cada flujo.",
+    h1s3: "Impulsa tu equipo 24/7",
+    p1s3: "Agentes IA que atienden y aprenden sin parar.",
+    // New services mosaic translations
+    servTitle: "Nuestros servicios",
+    sv1t: "Automatización de procesos",
+    sv1d: "Orquestamos flujos backend y RPA end-to-end para eliminar tareas repetitivas.",
+    sv2t: "Agendamiento inteligente",
+    sv2d: "Sistemas de citas para clínicas y despachos con recordatorios y pagos.",
+    sv3t: "Agentes IA omnicanal",
+    sv3d: "Chatbots en WhatsApp, web y apps empresariales, entrenados en tu data.",
+    sv4t: "Plataformas impulsadas IA",
+    sv4d: "Aplicaciones que piensan y deciden en tiempo real.",
+    sv5t: "Contenido IA para redes",
+    sv5d: "Posts automáticos y on-brand para crecer en social media sin esfuerzo.",
+    sv6t: "Sitios web generados IA",
+    sv6d: "Landing pages optimizadas en horas, no días."
   }
 };
 
@@ -131,8 +173,10 @@ const langButtons = document.querySelectorAll('[data-lang]');
 const scrollLinks = document.querySelectorAll('[data-scroll]');
 const modalOpenButtons = document.querySelectorAll('[data-modal-open]');
 const modalCloseButtons = document.querySelectorAll('[data-modal-close]');
-const starfieldCanvas = document.getElementById('starfield');
 const timelineSteps = document.querySelectorAll('.timeline-step');
+const burger = document.getElementById('burger');
+const overlay = document.getElementById('overlay');
+const topbar = document.querySelector('.topbar');
 
 // Language switcher
 function setLanguage(lang) {
@@ -203,91 +247,6 @@ function closeModal(modal) {
   modal.close();
 }
 
-// Starfield animation
-function initStarfield() {
-  if (!starfieldCanvas) return;
-  
-  const ctx = starfieldCanvas.getContext('2d');
-  const stars = [];
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  
-  // Skip animation if user prefers reduced motion
-  if (prefersReducedMotion) {
-    drawStaticStarfield();
-    return;
-  }
-  
-  // Set canvas size
-  function resizeCanvas() {
-    starfieldCanvas.width = window.innerWidth;
-    starfieldCanvas.height = window.innerHeight;
-    initStars();
-  }
-  
-  // Create stars
-  function initStars() {
-    stars.length = 0;
-    const density = Math.floor((starfieldCanvas.width * starfieldCanvas.height) / 10000);
-    
-    for (let i = 0; i < density; i++) {
-      stars.push({
-        x: Math.random() * starfieldCanvas.width,
-        y: Math.random() * starfieldCanvas.height,
-        radius: Math.random() * 1.5,
-        opacity: Math.random(),
-        speed: Math.random() * 0.05
-      });
-    }
-  }
-  
-  // Draw static starfield for reduced motion
-  function drawStaticStarfield() {
-    resizeCanvas();
-    ctx.fillStyle = 'rgba(14, 17, 33, 1)';
-    ctx.fillRect(0, 0, starfieldCanvas.width, starfieldCanvas.height);
-    
-    for (let i = 0; i < stars.length; i++) {
-      const star = stars[i];
-      ctx.beginPath();
-      ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(255, 255, 255, ${star.opacity})`;
-      ctx.fill();
-    }
-  }
-  
-  // Animate stars
-  function animateStars() {
-    ctx.fillStyle = 'rgba(14, 17, 33, 0.1)';
-    ctx.fillRect(0, 0, starfieldCanvas.width, starfieldCanvas.height);
-    
-    for (let i = 0; i < stars.length; i++) {
-      const star = stars[i];
-      
-      // Move star
-      star.y += star.speed;
-      
-      // Reset if off screen
-      if (star.y > starfieldCanvas.height) {
-        star.y = 0;
-        star.x = Math.random() * starfieldCanvas.width;
-      }
-      
-      // Draw star
-      ctx.beginPath();
-      ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(255, 255, 255, ${star.opacity})`;
-      ctx.fill();
-    }
-    
-    requestAnimationFrame(animateStars);
-  }
-  
-  // Initialize
-  resizeCanvas();
-  window.addEventListener('resize', resizeCanvas);
-  animateStars();
-}
-
 // Timeline animation
 function initTimelineAnimation() {
   if (!timelineSteps.length) return;
@@ -306,6 +265,108 @@ function initTimelineAnimation() {
   timelineSteps.forEach(step => {
     observer.observe(step);
   });
+}
+
+/* HERO carousel – slide effect with drag */
+function initSwiper() {
+  const swiper = new Swiper('.swiper', {
+    // horizontal slide is default; omit 'effect'
+    speed: 700,
+    loop: true,
+    autoplay: { delay: 6000, disableOnInteraction: false },
+    pagination: { el: '.swiper-pagination', clickable: true },
+    grabCursor: true,          // nice hand cursor
+    simulateTouch: true,       // enable mouse drag
+    threshold: 10,             // drag sensitivity
+    resistanceRatio: 0.6
+  });
+}
+
+/* Burger menu */
+function initBurgerMenu() {
+  if (!burger || !overlay) return;
+  
+  burger.onclick = () => overlay.classList.add('open');
+  
+  const closeBtn = overlay.querySelector('.close');
+  if (closeBtn) {
+    closeBtn.onclick = () => overlay.classList.remove('open');
+  }
+  
+  overlay.addEventListener('click', e => {
+    if (e.target === overlay) overlay.classList.remove('open');
+  });
+  
+  // Close overlay when clicking on links
+  overlay.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      overlay.classList.remove('open');
+    });
+  });
+  
+  // Close overlay on Escape key
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && overlay.classList.contains('open')) {
+      overlay.classList.remove('open');
+    }
+  });
+}
+
+/* Sticky header bg */
+function initStickyHeader() {
+  if (!topbar) return;
+  
+  window.addEventListener('scroll', () => {
+    topbar.classList.toggle('scrolled', window.scrollY > 40);
+  });
+}
+
+/* === Services Lightbox === */
+function initServicesLightbox() {
+  const cards = document.querySelectorAll('.services .card');
+  const dialog = document.getElementById('svcBox');
+  const imgBox = document.getElementById('svcImg');
+  const titleBx = document.getElementById('svcTitle');
+  const descBx = document.getElementById('svcDesc');
+  let idx = 0;
+
+  const svcData = [
+    { key: 'sv1', img: 'https://images.unsplash.com/photo-1581091012184-41031b3a6b07?w=1200&auto=format&fit=crop' },
+    { key: 'sv2', img: 'https://images.unsplash.com/photo-1516483638261-f4dbaf036963?w=1200&auto=format&fit=crop' },
+    { key: 'sv3', img: 'https://images.unsplash.com/photo-1525186402429-b4ff38bedbec?w=1200&auto=format&fit=crop' },
+    { key: 'sv4', img: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=1200&auto=format&fit=crop' },
+    { key: 'sv5', img: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1200&auto=format&fit=crop' },
+    { key: 'sv6', img: 'https://images.unsplash.com/photo-1557800636-894a64c1696f?w=1200&auto=format&fit=crop' },
+  ];
+
+  function openBox(i) {
+    idx = i;
+    const { key, img } = svcData[idx];
+    imgBox.src = img;
+    imgBox.alt = translate(`${key}t`); // Set alt text for accessibility
+    titleBx.textContent = translate(`${key}t`);
+    descBx.textContent = translate(`${key}d`);
+    dialog.showModal();
+  }
+
+  if (cards.length && dialog) {
+    cards.forEach((c, i) => c.addEventListener('click', () => openBox(i)));
+    
+    const closeBtn = dialog.querySelector('.close');
+    if (closeBtn) closeBtn.onclick = () => dialog.close();
+    
+    const prevBtn = dialog.querySelector('.prev');
+    if (prevBtn) prevBtn.onclick = () => openBox((idx + 5) % 6);
+    
+    const nextBtn = dialog.querySelector('.next');
+    if (nextBtn) nextBtn.onclick = () => openBox((idx + 1) % 6);
+  }
+
+  /* helper uses existing i18n system */
+  function translate(k) {
+    const lang = document.documentElement.lang || 'es';
+    return (translations[lang] || {})[k] || '';
+  }
 }
 
 // Event Listeners
@@ -346,9 +407,18 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
   
-  // Initialize starfield
-  initStarfield();
-  
   // Initialize timeline animation
   initTimelineAnimation();
+  
+  // Initialize Swiper
+  initSwiper();
+  
+  // Initialize burger menu
+  initBurgerMenu();
+  
+  // Initialize sticky header
+  initStickyHeader();
+  
+  // Initialize services lightbox
+  initServicesLightbox();
 });

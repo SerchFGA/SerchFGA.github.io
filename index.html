@@ -71,108 +71,112 @@
   </script>
 </head>
 <body>
-  <header>
-    <div class="container header-container">
-      <a href="#" class="logo">Pixan AI</a>
-      <nav>
-        <ul class="social-links">
-          <li>
-            <a href="#" aria-label="LinkedIn">
-              <img src="icons/li.svg" alt="LinkedIn" width="20" height="20">
-            </a>
-          </li>
-          <li>
-            <a href="#" aria-label="Instagram">
-              <img src="icons/ig.svg" alt="Instagram" width="20" height="20">
-            </a>
-          </li>
-          <li>
-            <a href="#" aria-label="TikTok">
-              <img src="icons/tt.svg" alt="TikTok" width="20" height="20">
-            </a>
-          </li>
-        </ul>
-        <button class="btn-outline" data-modal-open="contact">Contacto</button>
-        <div class="lang-toggle">
-          <button class="active" data-lang="es">ES</button>
-          <span>/</span>
-          <button data-lang="en">EN</button>
-        </div>
-      </nav>
+  <!-- HEADER -->
+  <header class="topbar">
+    <a href="/" class="logo">Pixan AI</a>
+    <div class="lang-toggle">
+      <button class="active" data-lang="es">ES</button>
+      <span>/</span>
+      <button data-lang="en">EN</button>
     </div>
+    <button id="burger" aria-label="Menu">
+      <!-- 24×24 hamburger svg -->
+      <svg width="24" height="24" stroke="currentColor" fill="none" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
   </header>
 
+  <!-- OVERLAY MENU -->
+  <nav id="overlay" class="overlay">
+    <button class="close" aria-label="Close">&times;</button>
+    <ul>
+      <li><a href="#services" data-i18n="navServices">Servicios</a></li>
+      <li><a href="#" data-modal-open="contact" data-i18n="navContact">Contacto</a></li>
+      <li class="social">
+        <a href="https://linkedin.com" aria-label="LinkedIn" class="li">
+          <img src="icons/li.svg" alt="LinkedIn" width="24" height="24">
+        </a>
+        <a href="https://instagram.com" aria-label="Instagram" class="ig">
+          <img src="icons/ig.svg" alt="Instagram" width="24" height="24">
+        </a>
+        <a href="https://tiktok.com" aria-label="TikTok" class="tt">
+          <img src="icons/tt.svg" alt="TikTok" width="24" height="24">
+        </a>
+      </li>
+    </ul>
+  </nav>
+
   <main>
-    <section id="hero" class="hero">
-      <canvas id="starfield"></canvas>
-      <div class="container">
-        <div class="hero-inner">
-          <h1><span class="gradient">Automatiza con alma</span><br>y haz crecer tu negocio</h1>
-          <p class="hero-subtitle" data-i18n="heroSub">Creamos agentes IA y automatizaciones que liberan tiempo y multiplican el valor humano.</p>
-          <div class="cta-row">
-            <button class="btn-primary" data-scroll="#contact">Agenda llamada</button>
-            <button class="btn-ghost" data-scroll="#services">Ver servicios</button>
+    <!-- HERO CAROUSEL -->
+    <section id="hero" class="hero swiper">
+      <div class="swiper-wrapper">
+        <!-- Slide 1 -->
+        <div class="swiper-slide" style="--bg:url(https://images.pexels.com/photos/1714208/pexels-photo-1714208.jpeg?auto=compress&cs=tinysrgb&w=1600)">
+          <div class="hero-inner">
+            <h1><span class="grad" data-i18n="h1s1">Automatiza con alma</span></h1>
+            <p class="sub" data-i18n="p1s1">IA y procesos que liberan tu tiempo.</p>
+            <button class="btn-primary" data-scroll="#contact" data-i18n="cta">Agenda llamada</button>
           </div>
         </div>
+
+        <!-- Slide 2 - Updated with new image -->
+        <div class="swiper-slide" style="--bg:url(https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=1600)">
+          <div class="hero-inner">
+            <h1><span class="grad" data-i18n="h1s2">Convierte datos en decisiones</span></h1>
+            <p class="sub" data-i18n="p1s2">Integramos inteligencia artificial en cada flujo.</p>
+            <button class="btn-primary" data-scroll="#contact" data-i18n="cta">Agenda llamada</button>
+          </div>
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="swiper-slide" style="--bg:url(https://images.unsplash.com/photo-1526378720200-07df08d79cf2?w=1600&auto=format&fit=crop)">
+          <div class="hero-inner">
+            <h1><span class="grad" data-i18n="h1s3">Impulsa tu equipo 24/7</span></h1>
+            <p class="sub" data-i18n="p1s3">Agentes AI que atienden y aprenden sin parar.</p>
+            <button class="btn-primary" data-scroll="#contact" data-i18n="cta">Agenda llamada</button>
+          </div>
+        </div>
+      </div>
+      <div class="swiper-pagination"></div>
+    </section>
+
+    <!-- NEW SERVICES SECTION WITH MOSAIC -->
+    <section id="services" class="services">
+      <h2 data-i18n="servTitle">Nuestros servicios</h2>
+      <div class="mosaic">
+        <article class="card" role="button" style="--img: url(https://images.unsplash.com/photo-1581091012184-41031b3a6b07?w=1200&auto=format&fit=crop)" aria-label="Automatización de procesos">
+          <span class="label" data-i18n="sv1t">Automatización de procesos</span>
+        </article>
+        <article class="card" role="button" style="--img: url(https://images.unsplash.com/photo-1516483638261-f4dbaf036963?w=1200&auto=format&fit=crop)" aria-label="Agendamiento inteligente">
+          <span class="label" data-i18n="sv2t">Agendamiento inteligente</span>
+        </article>
+        <article class="card" role="button" style="--img: url(https://images.unsplash.com/photo-1525186402429-b4ff38bedbec?w=1200&auto=format&fit=crop)" aria-label="Agentes IA omnicanal">
+          <span class="label" data-i18n="sv3t">Agentes IA omnicanal</span>
+        </article>
+        <article class="card" role="button" style="--img: url(https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=1200&auto=format&fit=crop)" aria-label="Plataformas impulsadas por IA">
+          <span class="label" data-i18n="sv4t">Plataformas impulsadas IA</span>
+        </article>
+        <article class="card" role="button" style="--img: url(https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1200&auto=format&fit=crop)" aria-label="Contenido IA para redes">
+          <span class="label" data-i18n="sv5t">Contenido IA para redes</span>
+        </article>
+        <article class="card" role="button" style="--img: url(https://images.unsplash.com/photo-1557800636-894a64c1696f?w=1200&auto=format&fit=crop)" aria-label="Sitios web generados IA">
+          <span class="label" data-i18n="sv6t">Sitios web generados IA</span>
+        </article>
       </div>
     </section>
 
-    <section id="services" class="services">
-      <div class="container">
-        <h2 data-i18n="servicesTitle">Servicios destacados</h2>
-        <div class="services-grid">
-          <div class="service-card">
-            <div class="service-icon">
-              <span>⚙️</span>
-            </div>
-            <h3 data-i18n="sv1">Automatización de procesos</h3>
-            <p data-i18n="sv1Text">Flujos backend y RPA de extremo a extremo.</p>
-          </div>
-          <div class="service-card">
-            <div class="service-icon">
-              <span>🤖</span>
-            </div>
-            <h3 data-i18n="sv2">Agentes IA omnicanal</h3>
-            <p data-i18n="sv2Text">WhatsApp, web y entornos empresariales.</p>
-          </div>
-          <div class="service-card">
-            <div class="service-icon">
-              <span>🧠</span>
-            </div>
-            <h3 data-i18n="sv3">Sistemas impulsados por IA</h3>
-            <p data-i18n="sv3Text">Apps que piensan y deciden en tiempo real.</p>
-          </div>
-          <div class="service-card">
-            <div class="service-icon">
-              <span>🔄</span>
-            </div>
-            <h3 data-i18n="sv4">IA en tus procesos</h3>
-            <p data-i18n="sv4Text">Insertamos modelos ML en tu stack actual.</p>
-          </div>
-          <div class="service-card">
-            <div class="service-icon">
-              <span>📊</span>
-            </div>
-            <h3 data-i18n="sv5">Auditoría de automatización</h3>
-            <p data-i18n="sv5Text">Mapeo y ROI de oportunidades internas.</p>
-          </div>
-          <div class="service-card">
-            <div class="service-icon">
-              <span>📱</span>
-            </div>
-            <h3 data-i18n="sv6">Contenido IA para redes</h3>
-            <p data-i18n="sv6Text">Posts automáticos, 100 % on-brand.</p>
-          </div>
-          <div class="service-card">
-            <div class="service-icon">
-              <span>🌐</span>
-            </div>
-            <h3 data-i18n="sv7">Webs generadas con IA</h3>
-            <p data-i18n="sv7Text">Landing pages listas en horas.</p>
-          </div>
+    <!-- Lightbox for Services -->
+    <dialog id="svcBox">
+      <button aria-label="close" class="close">&times;</button>
+      <button class="nav prev" aria-label="prev">&#10094;</button>
+      <div class="box-inner">
+        <img id="svcImg" alt="" loading="lazy" />
+        <div class="text">
+          <h3 id="svcTitle"></h3>
+          <p id="svcDesc"></p>
         </div>
       </div>
-    </section>
+      <button class="nav next" aria-label="next">&#10095;</button>
+    </dialog>
 
     <section id="how" class="how">
       <div class="container">
@@ -358,6 +362,8 @@
     </div>
   </dialog>
 
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"/>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
   <script src="main.js"></script>
 </body>
 </html>
