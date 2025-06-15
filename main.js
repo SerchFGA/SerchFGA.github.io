@@ -3,16 +3,33 @@ const translations = {
   en: {
     heroSub: "We craft AI agents & automations that free time and amplify human value.",
     howTitle: "How it works",
-    s1Title: "Submit your request",
-    s1Text: "No tech jargon required.",
-    s2Title: "We design the solution",
-    s2Text: "Tailored to you.",
-    s3Title: "We implement & measure",
-    s3Text: "Iterate as needed.",
+    hw1: "Kick-off call",
+    hw1Text: "Scope & requirements capture.",
+    hw2: "Proposal & quote",
+    hw2Text: "Fixed scope, timeline & pricing.",
+    hw3: "Rapid MVP",
+    hw3Text: "Working version in days for validation.",
+    hw4: "Full build",
+    hw4Text: "End-to-end development & integration.",
+    hw5: "Initial test",
+    hw5Text: "A/B test & fine-tuning with live data.",
+    hw6: "Continuous improvement",
+    hw6Text: "Support, metrics & monthly optimisation.",
     servicesTitle: "Featured Services",
-    service1: "Process automation",
-    service2: "AI chatbots",
-    service3: "No-code integrations",
+    sv1: "Process automation",
+    sv1Text: "End-to-end backend & RPA flows.",
+    sv2: "Omnichannel AI agents",
+    sv2Text: "WhatsApp, web & enterprise chat.",
+    sv3: "AI-powered systems",
+    sv3Text: "Apps that think & decide in real-time.",
+    sv4: "AI in your workflow",
+    sv4Text: "Embed ML models in your current stack.",
+    sv5: "Automation audits",
+    sv5Text: "Map & ROI internal opportunities.",
+    sv6: "AI content for social",
+    sv6Text: "Auto-generated, on-brand posts.",
+    sv7: "AI-built websites",
+    sv7Text: "Landing pages in hours.",
     faqTitle: "Frequently Asked Questions",
     q1: "How long does a typical project take?",
     a1: "From 2 weeks for simple solutions to 2 months for complex systems. We always deliver incremental value.",
@@ -36,6 +53,7 @@ const translations = {
     formMessage: "Message",
     formSubmit: "Submit",
     navHome: "Home",
+    navServices: "Services",
     navContact: "Contact",
     navPrivacy: "Privacy",
     navTerms: "Terms",
@@ -47,16 +65,33 @@ const translations = {
   es: {
     heroSub: "Creamos agentes IA y automatizaciones que liberan tiempo y multiplican el valor humano.",
     howTitle: "Cómo funciona",
-    s1Title: "Envía tu reto",
-    s1Text: "Describe tu proceso y objetivo.",
-    s2Title: "Diseñamos la solución",
-    s2Text: "A medida.",
-    s3Title: "Implementamos & medimos",
-    s3Text: "Itera ilimitadamente.",
+    hw1: "Agendamiento inicial",
+    hw1Text: "Reunión de valoración y captura de requisitos.",
+    hw2: "Propuesta & cotización",
+    hw2Text: "Diseño de alcance, tiempos y precio fijo.",
+    hw3: "MVP rápido",
+    hw3Text: "Versión funcional en días para validar.",
+    hw4: "Implementación a medida",
+    hw4Text: "Desarrollo e integración completa.",
+    hw5: "Prueba inicial",
+    hw5Text: "Test A/B y ajuste fino con datos reales.",
+    hw6: "Mejora continua",
+    hw6Text: "Soporte, métricas y optimización mensual.",
     servicesTitle: "Servicios destacados",
-    service1: "Automatización de procesos",
-    service2: "Chatbots IA",
-    service3: "Integraciones nocode",
+    sv1: "Automatización de procesos",
+    sv1Text: "Flujos backend y RPA de extremo a extremo.",
+    sv2: "Agentes IA omnicanal",
+    sv2Text: "WhatsApp, web y entornos empresariales.",
+    sv3: "Sistemas impulsados por IA",
+    sv3Text: "Apps que piensan y deciden en tiempo real.",
+    sv4: "IA en tus procesos",
+    sv4Text: "Insertamos modelos ML en tu stack actual.",
+    sv5: "Auditoría de automatización",
+    sv5Text: "Mapeo y ROI de oportunidades internas.",
+    sv6: "Contenido IA para redes",
+    sv6Text: "Posts automáticos, 100 % on-brand.",
+    sv7: "Webs generadas con IA",
+    sv7Text: "Landing pages listas en horas.",
     faqTitle: "Preguntas frecuentes",
     q1: "¿Cuánto tarda un proyecto típico?",
     a1: "Desde 2 semanas para soluciones simples hasta 2 meses para sistemas complejos. Siempre entregamos valor incremental.",
@@ -80,6 +115,7 @@ const translations = {
     formMessage: "Mensaje",
     formSubmit: "Enviar",
     navHome: "Inicio",
+    navServices: "Servicios",
     navContact: "Contacto",
     navPrivacy: "Privacidad",
     navTerms: "Términos",
@@ -96,9 +132,23 @@ const scrollLinks = document.querySelectorAll('[data-scroll]');
 const modalOpenButtons = document.querySelectorAll('[data-modal-open]');
 const modalCloseButtons = document.querySelectorAll('[data-modal-close]');
 const starfieldCanvas = document.getElementById('starfield');
+const timelineSteps = document.querySelectorAll('.timeline-step');
 
 // Language switcher
 function setLanguage(lang) {
+  // Update document title based on language
+  document.title = lang === 'es' 
+    ? "Pixan AI | Automatización y agentes IA con alma" 
+    : "Pixan AI | AI Automation and agents with soul";
+  
+  // Update meta description based on language
+  const metaDescription = document.querySelector('meta[name="description"]');
+  if (metaDescription) {
+    metaDescription.content = lang === 'es'
+      ? "Pixan AI - Automatización y agentes IA con alma para PyMES. Optimiza procesos, implementa chatbots inteligentes y transforma tu negocio con soluciones a medida."
+      : "Pixan AI - AI automation and agents with soul for SMBs. Optimize processes, implement intelligent chatbots, and transform your business with tailored solutions.";
+  }
+  
   // Save to localStorage
   localStorage.setItem('pixanLang', lang);
   
@@ -238,6 +288,26 @@ function initStarfield() {
   animateStars();
 }
 
+// Timeline animation
+function initTimelineAnimation() {
+  if (!timelineSteps.length) return;
+  
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('animate-in');
+        // Add delay for each step to create a cascade effect
+        const step = entry.target.getAttribute('data-step');
+        entry.target.style.transitionDelay = `${(step - 1) * 0.15}s`;
+      }
+    });
+  }, { threshold: 0.2 });
+  
+  timelineSteps.forEach(step => {
+    observer.observe(step);
+  });
+}
+
 // Event Listeners
 document.addEventListener('DOMContentLoaded', () => {
   // Initialize language
@@ -278,4 +348,7 @@ document.addEventListener('DOMContentLoaded', () => {
   
   // Initialize starfield
   initStarfield();
+  
+  // Initialize timeline animation
+  initTimelineAnimation();
 });

@@ -3,12 +3,72 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Pixan AI - Automatiza con alma y haz crecer tu negocio. Creamos agentes IA y automatizaciones que liberan tiempo y multiplican el valor humano.">
-  <title>Pixan AI | Automatiza con alma</title>
+  <meta name="description" content="Pixan AI - Automatización y agentes IA con alma para PyMES. Optimiza procesos, implementa chatbots inteligentes y transforma tu negocio con soluciones a medida.">
+  <meta name="geo.region" content="MX"/>
+  <meta name="geo.placename" content="Ciudad de México"/>
+  <link rel="alternate" hreflang="es" href="https://pixanai.github.io/"/>
+  <link rel="alternate" hreflang="en" href="https://pixanai.github.io/"/>
+  <title>Pixan AI | Automatización y agentes IA con alma</title>
   <link rel="stylesheet" href="styles.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "¿Cuánto tarda un proyecto típico?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Desde 2 semanas para soluciones simples hasta 2 meses para sistemas complejos. Siempre entregamos valor incremental."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cómo funciona la tarifa?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ofrecemos tarifas por proyecto o suscripciones mensuales según tus necesidades. Contacta para un presupuesto personalizado."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Necesito conocimientos técnicos?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Nos encargamos de toda la parte técnica. Solo necesitamos entender tu proceso y objetivos de negocio."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Pueden integrar mis herramientas?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sí. Trabajamos con la mayoría de herramientas populares y APIs. Si existe una forma de conectarlo, lo haremos."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Es seguro?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Absolutamente. Seguimos las mejores prácticas de seguridad y cumplimos con GDPR. Tus datos siempre te pertenecen."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Ofrecen soporte continuo?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sí. Ofrecemos planes de soporte y mantenimiento para asegurar que tu solución evolucione con tu negocio."
+          }
+        }
+      ]
+    }
+  </script>
 </head>
 <body>
   <header>
@@ -45,34 +105,13 @@
   <main>
     <section id="hero" class="hero">
       <canvas id="starfield"></canvas>
-      <div class="container hero-content">
-        <h1><span class="gradient">Automatiza con alma</span><br>y haz crecer tu negocio</h1>
-        <p class="hero-subtitle" data-i18n="heroSub">Creamos agentes IA y automatizaciones que liberan tiempo y multiplican el valor humano.</p>
-        <div class="cta-row">
-          <button class="btn-primary" data-scroll="#contact">Agenda llamada</button>
-          <button class="btn-ghost" data-scroll="#how">Cómo funciona</button>
-        </div>
-      </div>
-    </section>
-
-    <section id="how" class="how">
       <div class="container">
-        <h2 data-i18n="howTitle">Cómo funciona</h2>
-        <div class="cards">
-          <div class="card">
-            <div class="card-icon">⚡</div>
-            <h3 data-i18n="s1Title">Envía tu reto</h3>
-            <p data-i18n="s1Text">Describe tu proceso y objetivo.</p>
-          </div>
-          <div class="card">
-            <div class="card-icon">🎯</div>
-            <h3 data-i18n="s2Title">Diseñamos la solución</h3>
-            <p data-i18n="s2Text">A medida.</p>
-          </div>
-          <div class="card">
-            <div class="card-icon">🚀</div>
-            <h3 data-i18n="s3Title">Implementamos & medimos</h3>
-            <p data-i18n="s3Text">Itera ilimitadamente.</p>
+        <div class="hero-inner">
+          <h1><span class="gradient">Automatiza con alma</span><br>y haz crecer tu negocio</h1>
+          <p class="hero-subtitle" data-i18n="heroSub">Creamos agentes IA y automatizaciones que liberan tiempo y multiplican el valor humano.</p>
+          <div class="cta-row">
+            <button class="btn-primary" data-scroll="#contact">Agenda llamada</button>
+            <button class="btn-ghost" data-scroll="#services">Ver servicios</button>
           </div>
         </div>
       </div>
@@ -81,20 +120,113 @@
     <section id="services" class="services">
       <div class="container">
         <h2 data-i18n="servicesTitle">Servicios destacados</h2>
-        <ul class="services-list">
-          <li>
-            <span class="service-icon">🔄</span>
-            <span data-i18n="service1">Automatización de procesos</span>
-          </li>
-          <li>
-            <span class="service-icon">💬</span>
-            <span data-i18n="service2">Chatbots IA</span>
-          </li>
-          <li>
-            <span class="service-icon">🔌</span>
-            <span data-i18n="service3">Integraciones nocode</span>
-          </li>
-        </ul>
+        <div class="services-grid">
+          <div class="service-card">
+            <div class="service-icon">
+              <span>⚙️</span>
+            </div>
+            <h3 data-i18n="sv1">Automatización de procesos</h3>
+            <p data-i18n="sv1Text">Flujos backend y RPA de extremo a extremo.</p>
+          </div>
+          <div class="service-card">
+            <div class="service-icon">
+              <span>🤖</span>
+            </div>
+            <h3 data-i18n="sv2">Agentes IA omnicanal</h3>
+            <p data-i18n="sv2Text">WhatsApp, web y entornos empresariales.</p>
+          </div>
+          <div class="service-card">
+            <div class="service-icon">
+              <span>🧠</span>
+            </div>
+            <h3 data-i18n="sv3">Sistemas impulsados por IA</h3>
+            <p data-i18n="sv3Text">Apps que piensan y deciden en tiempo real.</p>
+          </div>
+          <div class="service-card">
+            <div class="service-icon">
+              <span>🔄</span>
+            </div>
+            <h3 data-i18n="sv4">IA en tus procesos</h3>
+            <p data-i18n="sv4Text">Insertamos modelos ML en tu stack actual.</p>
+          </div>
+          <div class="service-card">
+            <div class="service-icon">
+              <span>📊</span>
+            </div>
+            <h3 data-i18n="sv5">Auditoría de automatización</h3>
+            <p data-i18n="sv5Text">Mapeo y ROI de oportunidades internas.</p>
+          </div>
+          <div class="service-card">
+            <div class="service-icon">
+              <span>📱</span>
+            </div>
+            <h3 data-i18n="sv6">Contenido IA para redes</h3>
+            <p data-i18n="sv6Text">Posts automáticos, 100 % on-brand.</p>
+          </div>
+          <div class="service-card">
+            <div class="service-icon">
+              <span>🌐</span>
+            </div>
+            <h3 data-i18n="sv7">Webs generadas con IA</h3>
+            <p data-i18n="sv7Text">Landing pages listas en horas.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="how" class="how">
+      <div class="container">
+        <h2 data-i18n="howTitle">Cómo funciona</h2>
+        <div class="timeline">
+          <div class="timeline-step" data-step="1">
+            <div class="step-number">1</div>
+            <div class="step-content">
+              <div class="step-icon">📞</div>
+              <h3 data-i18n="hw1">Agendamiento inicial</h3>
+              <p data-i18n="hw1Text">Reunión de valoración y captura de requisitos.</p>
+            </div>
+          </div>
+          <div class="timeline-step" data-step="2">
+            <div class="step-number">2</div>
+            <div class="step-content">
+              <div class="step-icon">📝</div>
+              <h3 data-i18n="hw2">Propuesta & cotización</h3>
+              <p data-i18n="hw2Text">Diseño de alcance, tiempos y precio fijo.</p>
+            </div>
+          </div>
+          <div class="timeline-step" data-step="3">
+            <div class="step-number">3</div>
+            <div class="step-content">
+              <div class="step-icon">🚀</div>
+              <h3 data-i18n="hw3">MVP rápido</h3>
+              <p data-i18n="hw3Text">Versión funcional en días para validar.</p>
+            </div>
+          </div>
+          <div class="timeline-step" data-step="4">
+            <div class="step-number">4</div>
+            <div class="step-content">
+              <div class="step-icon">⚙️</div>
+              <h3 data-i18n="hw4">Implementación a medida</h3>
+              <p data-i18n="hw4Text">Desarrollo e integración completa.</p>
+            </div>
+          </div>
+          <div class="timeline-step" data-step="5">
+            <div class="step-number">5</div>
+            <div class="step-content">
+              <div class="step-icon">🧪</div>
+              <h3 data-i18n="hw5">Prueba inicial</h3>
+              <p data-i18n="hw5Text">Test A/B y ajuste fino con datos reales.</p>
+            </div>
+          </div>
+          <div class="timeline-step" data-step="6">
+            <div class="step-number">6</div>
+            <div class="step-content">
+              <div class="step-icon">📈</div>
+              <h3 data-i18n="hw6">Mejora continua</h3>
+              <p data-i18n="hw6Text">Soporte, métricas y optimización mensual.</p>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -133,32 +265,34 @@
 
   <footer>
     <div class="container footer-container">
-      <div class="footer-left">
+      <div class="footer-content">
+        <a href="#" class="logo">Pixan AI</a>
         <p>© 2025 Pixan AI</p>
         <ul class="footer-links">
           <li><a href="#" data-i18n="navHome">Inicio</a></li>
+          <li><a href="#services" data-i18n="navServices">Servicios</a></li>
           <li><a href="#" data-modal-open="contact" data-i18n="navContact">Contacto</a></li>
           <li><a href="#" data-modal-open="privacy" data-i18n="navPrivacy">Privacidad</a></li>
           <li><a href="#" data-modal-open="terms" data-i18n="navTerms">Términos</a></li>
         </ul>
+        <ul class="social-links">
+          <li>
+            <a href="#" aria-label="LinkedIn">
+              <img src="icons/li.svg" alt="LinkedIn" width="20" height="20">
+            </a>
+          </li>
+          <li>
+            <a href="#" aria-label="Instagram">
+              <img src="icons/ig.svg" alt="Instagram" width="20" height="20">
+            </a>
+          </li>
+          <li>
+            <a href="#" aria-label="TikTok">
+              <img src="icons/tt.svg" alt="TikTok" width="20" height="20">
+            </a>
+          </li>
+        </ul>
       </div>
-      <ul class="social-links">
-        <li>
-          <a href="#" aria-label="LinkedIn">
-            <img src="icons/li.svg" alt="LinkedIn" width="20" height="20">
-          </a>
-        </li>
-        <li>
-          <a href="#" aria-label="Instagram">
-            <img src="icons/ig.svg" alt="Instagram" width="20" height="20">
-          </a>
-        </li>
-        <li>
-          <a href="#" aria-label="TikTok">
-            <img src="icons/tt.svg" alt="TikTok" width="20" height="20">
-          </a>
-        </li>
-      </ul>
     </div>
   </footer>
 
