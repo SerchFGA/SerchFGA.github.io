@@ -354,7 +354,7 @@ function initServicesLightbox() {
 
   // Ensure no undefined images
   svcData.forEach(o => {
-    if (!o.img) o.img = 'https://images.unsplash.com/photo-1581091012184-41031b3a6b07?w=1200&auto=format&fit=crop'; // universal default
+    if (!o.img) o.img = 'assets/services/placeholder.webp';
   });
 
   function openBox(i) {
@@ -448,4 +448,11 @@ document.addEventListener('DOMContentLoaded', () => {
   
   // Initialize services lightbox
   initServicesLightbox();
+
+  // Add event listeners to dialogs
+  const dialogs = document.querySelectorAll('dialog.svc-modal');
+  dialogs.forEach(d => {
+    d.addEventListener('show', () => document.body.style.overflow = 'hidden');
+    d.addEventListener('close', () => document.body.style.overflow = '');
+  });
 });

@@ -977,3 +977,138 @@ input:focus, textarea:focus {
     gap: 1rem;
   }
 }
+
+/* Sección a full-width sin padding */
+#services.full-width {
+  padding: 0;
+  margin: 0;
+}
+
+/* GRID 3 columnas sin gap */
+#services .mosaic {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 col iguales */
+  grid-auto-rows: minmax(22vw, 1fr);    /* altura proporcional desktop */
+  gap: 0;
+}
+
+/* Span de cada tarjeta según clase */
+.img-box.narrow {
+  grid-column: span 1;
+}
+.img-box.wide {
+  grid-column: span 2;
+}
+
+@media (max-width: 800px) { /* móvil / tablet */
+  #services .mosaic {
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: minmax(46vw, 1fr);
+  }
+  .img-box.narrow, .img-box.wide {
+    grid-column: span 2; /* ancho completo */
+  }
+}
+
+/* Tarjeta y hover (sin tocar contenido) */
+.img-box {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+.img-box::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--img) center/cover no-repeat;
+  transition: transform .4s ease;
+}
+.img-box:hover::before {
+  transform: scale(1.05) translateX(-14px);
+}
+
+.svc-label {
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #fff;
+  font-weight: 600;
+  font-size: .9rem;
+  text-shadow: 0 0 4px #000;
+}
+
+/* Título oculto (si existe) */
+.visually-hidden {
+  position: absolute !important;
+  clip: rect(1px, 1px, 1px, 1px);
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+/* Modal centrado y tamaño fijo */
+dialog.svc-modal {
+  width: 90%;
+  max-width: 900px;
+  inset: 0;
+  margin: auto;
+  border: none;
+  border-radius: 10px;
+  padding: 0;
+  background: #111;
+  color: #fff;
+  overflow: hidden;
+}
+dialog::backdrop {
+  background: rgba(0, 0, 0, .85);
+}
+.svc-modal .box-inner {
+  display: flex;
+}
+.svc-modal img {
+  width: 50%;
+  object-fit: cover;
+}
+.svc-modal .text {
+  width: 50%;
+  padding: 2rem;
+}
+@media (max-width: 600px) {
+  .svc-modal .box-inner {
+    flex-direction: column;
+  }
+  .svc-modal img {
+    width: 100%;
+    height: 220px;
+  }
+  .svc-modal .text {
+    width: 100%;
+  }
+}
+.svc-modal .nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 2.6rem;
+  color: #fff;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+.svc-modal .prev {
+  left: .6rem;
+}
+.svc-modal .next {
+  right: .6rem;
+}
+.svc-modal .close {
+  position: absolute;
+  top: .8rem;
+  right: 1rem;
+  font-size: 2rem;
+  background: none;
+  border: 0;
+  color: #fff;
+  cursor: pointer;
+}
