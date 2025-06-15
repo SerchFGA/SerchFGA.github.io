@@ -539,7 +539,9 @@ p {
 /* Lightbox dialog */
 #svcBox {
   width: 90%;
-  max-width: 900px;
+  max-width: 1200px;
+  height: 50%;
+  max-height: 400px;
   margin: auto;
   inset: 0;                   /* center horizontally & vertically */
   border: none;
@@ -559,7 +561,7 @@ p {
 }
 
 .box-inner img {
-  width: 50%;
+  width: 60%;
   min-height: 100%;
   object-fit: cover;
 }
@@ -597,7 +599,7 @@ p {
   top: 50%;
   transform: translateY(-50%);
   background: none;
-  border: 0;
+  border: 1;
   font-size: 2.6rem;
   color: #fff;
   cursor: pointer;
